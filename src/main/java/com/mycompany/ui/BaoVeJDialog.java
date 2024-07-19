@@ -16,6 +16,7 @@ public class BaoVeJDialog extends javax.swing.JDialog {
     public BaoVeJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
