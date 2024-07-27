@@ -4,6 +4,11 @@
  */
 package com.mycompany.ui;
 
+import com.mycompany.dao.TaiKhoanDAO;
+import com.mycompany.entity.TaiKhoan;
+import com.mycompany.utils.Auth;
+import com.mycompany.utils.MsgBox;
+
 /**
  *
  * @author Just Share
@@ -167,7 +172,7 @@ public class LoginJDialog extends javax.swing.JDialog {
 
     private void chkXemPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkXemPassActionPerformed
         // TODO add your handling code here:
-                if (chkXemPass.isSelected()) {
+        if (chkXemPass.isSelected()) {
             txtPassword.setEchoChar((char) 0);
         } else {
             txtPassword.setEchoChar('*');
@@ -176,12 +181,12 @@ public class LoginJDialog extends javax.swing.JDialog {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        ketThuc();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        dangNhap();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -238,4 +243,26 @@ public class LoginJDialog extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+
+    TaiKhoanDAO dao = new TaiKhoanDAO();
+
+    private void dangNhap() {
+        String maDangNhap = txtUserName.getText();
+        String matKhau = new String(txtPassword.getPassword());
+        TaiKhoan tk = dao.selectById(maDangNhap);
+        if (tk == null) {
+            MsgBox.alert(this, "Sai mã tài khoản!");
+        } else if (!matKhau.equalsIgnoreCase(tk.getMatKhau())) {
+            MsgBox.alert(this, "Sai mật khẩu!");
+        } else {
+            Auth.user = tk;
+            this.dispose();
+        }
+    }
+
+    private void ketThuc() {
+        if (MsgBox.confirm(this, "Bạn có muốn kết thúc ứng dụng?")) {
+            System.exit(0);
+        }
+    }
 }

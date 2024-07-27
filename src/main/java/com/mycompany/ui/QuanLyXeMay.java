@@ -4,6 +4,15 @@
  */
 package com.mycompany.ui;
 
+import com.mycompany.utils.Auth;
+import com.mycompany.utils.Image;
+import com.mycompany.utils.MsgBox;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
+
 /**
  *
  * @author Just Share
@@ -15,9 +24,7 @@ public class QuanLyXeMay extends javax.swing.JFrame {
      */
     public QuanLyXeMay() {
         initComponents();
-        setLocationRelativeTo(null);
-        new ChaoJDialog(this, true).setVisible(true);
-        new LoginJDialog(this, true).setVisible(true);
+        init();
     }
 
     /**
@@ -31,15 +38,17 @@ public class QuanLyXeMay extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblTenNguoiDangNhap = new javax.swing.JLabel();
+        lblVaiTro = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         bntDangXuat = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        lblDongHo = new javax.swing.JLabel();
+        btnQuanLyTaiKhoan = new javax.swing.JButton();
+        btnQuanLyNhanVien = new javax.swing.JButton();
+        btnQuanLyKhachHang = new javax.swing.JButton();
+        btnBaoVe = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mniTaiKhoann = new javax.swing.JMenuItem();
@@ -58,9 +67,9 @@ public class QuanLyXeMay extends javax.swing.JFrame {
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel3.setText("Xin chào: Mr Beast");
+        lblTenNguoiDangNhap.setText("Xin chào: Mr Beast");
 
-        jLabel4.setText("Vai trò: Quản lý");
+        lblVaiTro.setText("Vai trò: Quản lý");
 
         jLabel5.setText("Thông tin:");
 
@@ -71,8 +80,8 @@ public class QuanLyXeMay extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTenNguoiDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(lblVaiTro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -80,9 +89,9 @@ public class QuanLyXeMay extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(lblTenNguoiDangNhap)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblVaiTro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -90,16 +99,26 @@ public class QuanLyXeMay extends javax.swing.JFrame {
 
         bntDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/switch.png"))); // NOI18N
         bntDangXuat.setText("Đăng xuất");
+        bntDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntDangXuatActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/rising.png"))); // NOI18N
         jButton4.setText("Nạp tiền");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/keyword.png"))); // NOI18N
+        jButton1.setText("Đổi mật khẩu");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(180, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bntDangXuat)
@@ -115,31 +134,39 @@ public class QuanLyXeMay extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bntDangXuat)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/clock.png"))); // NOI18N
-        jLabel6.setText("00:00:00 AM");
+        lblDongHo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/clock.png"))); // NOI18N
+        lblDongHo.setText("00:00:00 AM");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/avatar.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnQuanLyTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/avatar.png"))); // NOI18N
+        btnQuanLyTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnQuanLyTaiKhoanActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/grouping.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnQuanLyNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/grouping.png"))); // NOI18N
+        btnQuanLyNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnQuanLyNhanVienActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/client.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnQuanLyKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/client.png"))); // NOI18N
+        btnQuanLyKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnQuanLyKhachHangActionPerformed(evt);
+            }
+        });
+
+        btnBaoVe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/guard.png"))); // NOI18N
+        btnBaoVe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaoVeActionPerformed(evt);
             }
         });
 
@@ -180,15 +207,16 @@ public class QuanLyXeMay extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         mnuBaoVe.setText("Bảo vệ");
-        mnuBaoVe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuBaoVeActionPerformed(evt);
+        mnuBaoVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuBaoVeMouseClicked(evt);
             }
         });
         jMenuBar1.add(mnuBaoVe);
 
         mnuKhachHang.setText("Khách hàng");
 
+        mniQuanLyXeMay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/motorbike.png"))); // NOI18N
         mniQuanLyXeMay.setText("Quản lý xe máy");
         mniQuanLyXeMay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +225,7 @@ public class QuanLyXeMay extends javax.swing.JFrame {
         });
         mnuKhachHang.add(mniQuanLyXeMay);
 
+        mniMuaThe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/credit-card.png"))); // NOI18N
         mniMuaThe.setText("Mua thẻ xe");
         mniMuaThe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +234,7 @@ public class QuanLyXeMay extends javax.swing.JFrame {
         });
         mnuKhachHang.add(mniMuaThe);
 
+        mniLichSu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/history-book.png"))); // NOI18N
         mniLichSu.setText("Lịch sữ xe ra - vào");
         mniLichSu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,15 +254,17 @@ public class QuanLyXeMay extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6))
+                .addComponent(lblDongHo))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(btnQuanLyTaiKhoan)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnQuanLyNhanVien)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addContainerGap(464, Short.MAX_VALUE))
+                .addComponent(btnQuanLyKhachHang)
+                .addGap(18, 18, 18)
+                .addComponent(btnBaoVe)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,30 +274,31 @@ public class QuanLyXeMay extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))
-                    .addComponent(jButton3))
+                            .addComponent(btnQuanLyTaiKhoan)
+                            .addComponent(btnQuanLyNhanVien)
+                            .addComponent(btnQuanLyKhachHang)))
+                    .addComponent(btnBaoVe))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
-                .addComponent(jLabel6))
+                .addComponent(lblDongHo))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnQuanLyTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyTaiKhoanActionPerformed
         // TODO add your handling code here:
-        new QuanLyTaiKhoanJDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        openQuanLyTaiKhoan();
+    }//GEN-LAST:event_btnQuanLyTaiKhoanActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnQuanLyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyNhanVienActionPerformed
         // TODO add your handling code here:
-        new QuanLyNhanVienJDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        openQuanLyNhanVien();
+    }//GEN-LAST:event_btnQuanLyNhanVienActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnQuanLyKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyKhachHangActionPerformed
         // TODO add your handling code here:
-        new QuanLyKhackHangJDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        openQuanLyKhachHang();
+    }//GEN-LAST:event_btnQuanLyKhachHangActionPerformed
 
     private void mniTaiKhoannActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTaiKhoannActionPerformed
         // TODO add your handling code here:
@@ -292,11 +325,6 @@ public class QuanLyXeMay extends javax.swing.JFrame {
         openQuanLyGoiCuoc();
     }//GEN-LAST:event_mniTheCuocActionPerformed
 
-    private void mnuBaoVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBaoVeActionPerformed
-        // TODO add your handling code here:
-        openQuanLyXeRaVao();
-    }//GEN-LAST:event_mnuBaoVeActionPerformed
-
     private void mniMuaTheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMuaTheActionPerformed
         // TODO add your handling code here:
         openKhachHang();
@@ -306,6 +334,20 @@ public class QuanLyXeMay extends javax.swing.JFrame {
         // TODO add your handling code here:
         openKhachHang();
     }//GEN-LAST:event_mniLichSuActionPerformed
+
+    private void bntDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntDangXuatActionPerformed
+        // TODO add your handling code here:
+        openDangXuat();
+    }//GEN-LAST:event_bntDangXuatActionPerformed
+
+    private void mnuBaoVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuBaoVeMouseClicked
+        openQuanLyXeRaVao();
+    }//GEN-LAST:event_mnuBaoVeMouseClicked
+
+    private void btnBaoVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaoVeActionPerformed
+        // TODO add your handling code here:
+        openQuanLyXeRaVao();
+    }//GEN-LAST:event_btnBaoVeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,18 +386,20 @@ public class QuanLyXeMay extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntDangXuat;
+    private javax.swing.JButton btnBaoVe;
+    private javax.swing.JButton btnQuanLyKhachHang;
+    private javax.swing.JButton btnQuanLyNhanVien;
+    private javax.swing.JButton btnQuanLyTaiKhoan;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblDongHo;
+    private javax.swing.JLabel lblTenNguoiDangNhap;
+    private javax.swing.JLabel lblVaiTro;
     private javax.swing.JMenuItem mniKhachHang;
     private javax.swing.JMenuItem mniLichSu;
     private javax.swing.JMenuItem mniMuaThe;
@@ -368,26 +412,87 @@ public class QuanLyXeMay extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void openQuanLyTaiKhoan() {
-       new QuanLyTaiKhoanJDialog(this, true).setVisible(true);
+        if (Auth.quyenTruyCap().equalsIgnoreCase("quanLy")) {
+            new QuanLyTaiKhoanJDialog(this, true).setVisible(true);
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập!");
+        }
     }
 
     private void openQuanLyNhanVien() {
-        new QuanLyNhanVienJDialog(this, true).setVisible(true);
+        if (Auth.quyenTruyCap().equalsIgnoreCase("quanLy")) {
+            new QuanLyNhanVienJDialog(this, true).setVisible(true);
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập!");
+        }
     }
 
     private void openQuanLyKhachHang() {
-       new QuanLyKhackHangJDialog(this, true).setVisible(true);
+        if (Auth.quyenTruyCap().equalsIgnoreCase("quanLy")) {
+            new QuanLyKhachHangJDialog(this, true).setVisible(true);
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập!");
+        }
     }
 
     private void openQuanLyGoiCuoc() {
-        new QuanLyGoiCuoiJDialog(this, true).setVisible(true);
+        if (Auth.quyenTruyCap().equalsIgnoreCase("quanLy")) {
+            new QuanLyGoiCuocJDialog(this, true).setVisible(true);
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập!");
+        }
     }
 
     private void openQuanLyXeRaVao() {
-        new BaoVeJDialog(this, true).setVisible(true);
+        if (Auth.quyenTruyCap().equalsIgnoreCase("baoVe")) {
+            new BaoVeJDialog(this, true).setVisible(true);
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập!");
+        }
     }
 
     private void openKhachHang() {
-        new KhachHangJDialog(this, true).setVisible(true);
+        if (Auth.quyenTruyCap().equalsIgnoreCase("khachHang")) {
+            new KhachHangJDialog(this, true).setVisible(true);
+        } else {
+            MsgBox.alert(this, "Bạn không có quyền truy cập!");
+        }
+    }
+
+    private void init() {
+        setLocationRelativeTo(null);
+        setIconImage(Image.getAppIcon());
+        new ChaoJDialog(this, true).setVisible(true);
+        new LoginJDialog(this, true).setVisible(true);
+
+        new Timer(1000, new ActionListener() {
+            SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss a");
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblDongHo.setText(format.format(new Date()));
+            }
+        }).start();
+
+        capNhatTenHienThi();
+    }
+
+    private void openDangXuat() {
+        Auth.clear();
+        new LoginJDialog(this, true).setVisible(true);
+        capNhatTenHienThi();
+    }
+
+    private void capNhatTenHienThi() {
+        lblTenNguoiDangNhap.setText("Xin chào: " + Auth.user.getMaTaiKhoan());
+        String vaiTro;
+        if (Auth.user.getQuyen() == 1) {
+            vaiTro = "Chức vụ: Quản lý";
+        } else if (Auth.user.getQuyen() == 2) {
+            vaiTro = "Chức vụ: Bảo vệ";
+        } else {
+            vaiTro = "Vai trò: Khách hàng";
+        }
+        lblVaiTro.setText(vaiTro);
     }
 }

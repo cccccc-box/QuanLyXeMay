@@ -1,0 +1,73 @@
+/*
+ * Alăng Quân Sỹ
+ * PD09903
+ */
+package com.mycompany.dao;
+
+import com.mycompany.entity.TaiKhoan;
+import com.mycompany.utils.JDBC;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Just Share
+ */
+public class TaiKhoanDAO extends QuanLyXeMayDAO<TaiKhoan, String>{
+    String INSERT_SQL="insert into TaiKhoan(maTaiKhoan,TenDangNhap,matKhau,quyen) values(?,?,?,?)";
+    String UPDATE_SQL="update TaiKhoan set tenDangNhap=?, matKhau=?, quyen=? where maTaiKhoan=?";
+    String DELETE_SQL="delete from TaiKhoan where maTaiKhoan =?";
+    String SELECT_ALL_SQL="select * from TaiKhoan";
+    String SELECT_BY_ID_SQL="select * from TaiKhoan where maTaiKhoan=?";
+
+    @Override
+    public void insert(TaiKhoan entity) {
+        JDBC.update(INSERT_SQL, entity.getMaTaiKhoan(), entity.getTenDangNhap(), entity.getMatKhau(),entity.getQuyen());
+    }
+
+    @Override
+    public void update(TaiKhoan entity) {
+        JDBC.update(UPDATE_SQL, entity.getTenDangNhap(), entity.getMatKhau(),entity.getQuyen(),entity.getMaTaiKhoan());
+    }
+
+    @Override
+    public void delete(String id) {
+        JDBC.update(DELETE_SQL,id);
+    }
+
+    @Override
+    public TaiKhoan selectById(String id) {
+        List<TaiKhoan> list = selectBySQL(SELECT_BY_ID_SQL,id);
+        if(list.isEmpty()){
+            return null;
+        }
+        return list.get(0);
+    }
+
+    @Override
+    public List<TaiKhoan> selectAll() {
+        return selectBySQL(SELECT_ALL_SQL);
+    }
+
+    @Override
+    protected List<TaiKhoan> selectBySQL(String sql, Object... args) {
+        List <TaiKhoan> list = new ArrayList<TaiKhoan>();
+        try {
+            ResultSet rs=JDBC.query(sql, args);
+            while(rs.next()){
+            TaiKhoan entity = new TaiKhoan();
+            entity.setMaTaiKhoan(rs.getString("maTaiKhoan"));
+            entity.setTenDangNhap(rs.getString("tenDangNhap"));
+            entity.setMatKhau(rs.getString("matKhau"));
+            entity.setQuyen(rs.getInt("quyen"));
+            list.add(entity);
+        }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+           throw new RuntimeException(e);
+        }
+    }
+    
+}
