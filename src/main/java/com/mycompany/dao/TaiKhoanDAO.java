@@ -5,7 +5,7 @@
 package com.mycompany.dao;
 
 import com.mycompany.entity.TaiKhoan;
-import com.mycompany.utils.JDBC;
+import com.mycompany.utils.jdbc;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +23,17 @@ public class TaiKhoanDAO extends QuanLyXeMayDAO<TaiKhoan, String>{
 
     @Override
     public void insert(TaiKhoan entity) {
-        JDBC.update(INSERT_SQL, entity.getMaTaiKhoan(), entity.getTenDangNhap(), entity.getMatKhau(),entity.getQuyen());
+        jdbc.update(INSERT_SQL, entity.getMaTaiKhoan(), entity.getTenDangNhap(), entity.getMatKhau(),entity.getQuyen());
     }
 
     @Override
     public void update(TaiKhoan entity) {
-        JDBC.update(UPDATE_SQL, entity.getTenDangNhap(), entity.getMatKhau(),entity.getQuyen(),entity.getMaTaiKhoan());
+        jdbc.update(UPDATE_SQL, entity.getTenDangNhap(), entity.getMatKhau(),entity.getQuyen(),entity.getMaTaiKhoan());
     }
 
     @Override
     public void delete(String id) {
-        JDBC.update(DELETE_SQL,id);
+        jdbc.update(DELETE_SQL,id);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class TaiKhoanDAO extends QuanLyXeMayDAO<TaiKhoan, String>{
     protected List<TaiKhoan> selectBySQL(String sql, Object... args) {
         List <TaiKhoan> list = new ArrayList<TaiKhoan>();
         try {
-            ResultSet rs=JDBC.query(sql, args);
+            ResultSet rs=jdbc.query(sql, args);
             while(rs.next()){
             TaiKhoan entity = new TaiKhoan();
             entity.setMaTaiKhoan(rs.getString("maTaiKhoan"));
