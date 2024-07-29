@@ -49,7 +49,8 @@ public class ChaoJDialog extends javax.swing.JDialog {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(219, 66, 125));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));

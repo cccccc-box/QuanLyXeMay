@@ -62,6 +62,7 @@ public class QuanLyXeMay extends javax.swing.JFrame {
         mniLichSu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hệ thống quản lý trạm giữ xe");
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -110,6 +111,11 @@ public class QuanLyXeMay extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/keyword.png"))); // NOI18N
         jButton1.setText("Đổi mật khẩu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -252,9 +258,6 @@ public class QuanLyXeMay extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblDongHo))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnQuanLyTaiKhoan)
@@ -265,6 +268,9 @@ public class QuanLyXeMay extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnBaoVe)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblDongHo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,8 +284,9 @@ public class QuanLyXeMay extends javax.swing.JFrame {
                             .addComponent(btnQuanLyNhanVien)
                             .addComponent(btnQuanLyKhachHang)))
                     .addComponent(btnBaoVe))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
-                .addComponent(lblDongHo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addComponent(lblDongHo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -348,6 +355,11 @@ public class QuanLyXeMay extends javax.swing.JFrame {
         // TODO add your handling code here:
         openQuanLyXeRaVao();
     }//GEN-LAST:event_btnBaoVeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        openDoiMatKhau();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,7 +496,7 @@ public class QuanLyXeMay extends javax.swing.JFrame {
     }
 
     private void capNhatTenHienThi() {
-        lblTenNguoiDangNhap.setText("Xin chào: " + Auth.user.getMaTaiKhoan());
+        lblTenNguoiDangNhap.setText("Xin chào: " + Auth.user.getTenDangNhap());
         String vaiTro;
         if (Auth.user.getQuyen() == 1) {
             vaiTro = "Chức vụ: Quản lý";
@@ -494,5 +506,9 @@ public class QuanLyXeMay extends javax.swing.JFrame {
             vaiTro = "Vai trò: Khách hàng";
         }
         lblVaiTro.setText(vaiTro);
+    }
+
+    private void openDoiMatKhau() {
+        new DoiMatKhauJDialog(this, true).setVisible(true);
     }
 }

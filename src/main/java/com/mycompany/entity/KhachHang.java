@@ -12,6 +12,7 @@ public class KhachHang {
     String maKhachHang;
     String hoTen;
     String SDT;
+    String CCCD;
     String soDu;
     String hinhAnh;
     String maTaiKhoan;
@@ -38,6 +39,14 @@ public class KhachHang {
 
     public void setSDT(String SDT) {
         this.SDT = SDT;
+    }
+
+    public String getCCCD() {
+        return CCCD;
+    }
+
+    public void setCCCD(String CCCD) {
+        this.CCCD = CCCD;
     }
 
     public String getSoDu() {
@@ -67,14 +76,17 @@ public class KhachHang {
     public KhachHang() {
     }
 
-    public KhachHang(String maKhachHang, String hoTen, String SDT, String soDu, String hinhAnh, String maTaiKhoan) {
+    public KhachHang(String maKhachHang, String hoTen, String SDT, String CCCD, String soDu, String hinhAnh, String maTaiKhoan) {
         this.maKhachHang = maKhachHang;
         this.hoTen = hoTen;
         this.SDT = SDT;
+        this.CCCD = CCCD;
         this.soDu = soDu;
         this.hinhAnh = hinhAnh;
         this.maTaiKhoan = maTaiKhoan;
     }
+
+
     
     
 }

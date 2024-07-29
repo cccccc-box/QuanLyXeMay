@@ -46,12 +46,13 @@ public class LoginJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(919, 515));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/icon/security.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel1.setText("Mã tài khoản");
+        jLabel1.setText("Tên tài khoản");
 
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -247,11 +248,11 @@ public class LoginJDialog extends javax.swing.JDialog {
     TaiKhoanDAO dao = new TaiKhoanDAO();
 
     private void dangNhap() {
-        String maDangNhap = txtUserName.getText();
+        String tenDangNhap = txtUserName.getText();
         String matKhau = new String(txtPassword.getPassword());
-        TaiKhoan tk = dao.selectById(maDangNhap);
+        TaiKhoan tk = dao.selectByUserName(tenDangNhap);
         if (tk == null) {
-            MsgBox.alert(this, "Sai mã tài khoản!");
+            MsgBox.alert(this, "Sai tên đăng nhập!");
         } else if (!matKhau.equalsIgnoreCase(tk.getMatKhau())) {
             MsgBox.alert(this, "Sai mật khẩu!");
         } else {

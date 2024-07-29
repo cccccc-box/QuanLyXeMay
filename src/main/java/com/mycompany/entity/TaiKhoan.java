@@ -55,6 +55,13 @@ public class TaiKhoan {
         this.matKhau = matKhau;
         this.quyen = quyen;
     }
+
+    @Override
+    public String toString() {
+        return this.maTaiKhoan;
+    }
+    
+    
     
     
 }
