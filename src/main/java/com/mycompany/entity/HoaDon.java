@@ -11,16 +11,15 @@ import java.util.Date;
  * @author Just Share
  */
 public class HoaDon {
-    String maHD;
+    int maHD;
     Date ngayBan;
     String maKhachHang;
-    String maNV;
 
-    public String getMaHD() {
+    public int getMaHD() {
         return maHD;
     }
 
-    public void setMaHD(String maHD) {
+    public void setMaHD(int maHD) {
         this.maHD = maHD;
     }
 
@@ -40,23 +39,13 @@ public class HoaDon {
         this.maKhachHang = maKhachHang;
     }
 
-    public String getMaNV() {
-        return maNV;
-    }
-
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
-    }
-
     public HoaDon() {
     }
 
-    public HoaDon(String maHD, Date ngayBan, String maKhachHang, String maNV) {
+    public HoaDon(int maHD, Date ngayBan, String maKhachHang) {
         this.maHD = maHD;
         this.ngayBan = ngayBan;
         this.maKhachHang = maKhachHang;
-        this.maNV = maNV;
     }
-    
     
 }

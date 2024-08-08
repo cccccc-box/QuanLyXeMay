@@ -12,7 +12,7 @@ public class XeMay {
     int maXe;
     String bienSoXe;
     String hangXe;
-    boolean tinhTran;
+    boolean tinhTrang;
     String maKhachHang;
 
     public int getMaXe() {
@@ -39,12 +39,12 @@ public class XeMay {
         this.hangXe = hangXe;
     }
 
-    public boolean isTinhTran() {
-        return tinhTran;
+    public boolean isTinhTrang() {
+        return tinhTrang;
     }
 
-    public void setTinhTran(boolean tinhTran) {
-        this.tinhTran = tinhTran;
+    public void setTinhTrang(boolean tinhTrang) {
+        this.tinhTrang = tinhTrang;
     }
 
     public String getMaKhachHang() {
@@ -58,12 +58,17 @@ public class XeMay {
     public XeMay() {
     }
 
-    public XeMay(int maXe, String bienSoXe, String hangXe, boolean tinhTran, String maKhachHang) {
+    public XeMay(int maXe, String bienSoXe, String hangXe, boolean tinhTrang, String maKhachHang) {
         this.maXe = maXe;
         this.bienSoXe = bienSoXe;
         this.hangXe = hangXe;
-        this.tinhTran = tinhTran;
+        this.tinhTrang = tinhTrang;
         this.maKhachHang = maKhachHang;
+    }
+
+    @Override
+    public String toString() {
+        return this.bienSoXe;
     }
     
     

@@ -9,13 +9,6 @@ package com.mycompany.entity;
  * @author Just Share
  */
 public class KhachHang {
-    String maKhachHang;
-    String hoTen;
-    String SDT;
-    String CCCD;
-    String soDu;
-    String hinhAnh;
-    String maTaiKhoan;
 
     public String getMaKhachHang() {
         return maKhachHang;
@@ -49,11 +42,11 @@ public class KhachHang {
         this.CCCD = CCCD;
     }
 
-    public String getSoDu() {
+    public Double getSoDu() {
         return soDu;
     }
 
-    public void setSoDu(String soDu) {
+    public void setSoDu(Double soDu) {
         this.soDu = soDu;
     }
 
@@ -72,11 +65,18 @@ public class KhachHang {
     public void setMaTaiKhoan(String maTaiKhoan) {
         this.maTaiKhoan = maTaiKhoan;
     }
+    String maKhachHang;
+    String hoTen;
+    String SDT;
+    String CCCD;
+    Double soDu;
+    String hinhAnh;
+    String maTaiKhoan;
 
     public KhachHang() {
     }
 
-    public KhachHang(String maKhachHang, String hoTen, String SDT, String CCCD, String soDu, String hinhAnh, String maTaiKhoan) {
+    public KhachHang(String maKhachHang, String hoTen, String SDT, String CCCD, Double soDu, String hinhAnh, String maTaiKhoan) {
         this.maKhachHang = maKhachHang;
         this.hoTen = hoTen;
         this.SDT = SDT;
@@ -85,8 +85,4 @@ public class KhachHang {
         this.hinhAnh = hinhAnh;
         this.maTaiKhoan = maTaiKhoan;
     }
-
-
-    
-    
 }

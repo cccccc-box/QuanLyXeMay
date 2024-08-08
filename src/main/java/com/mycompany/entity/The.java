@@ -11,17 +11,17 @@ import java.util.Date;
  * @author Just Share
  */
 public class The {
-    String maThe;
+    int maThe;
     Date thoiHan;
     int maXe;
     String maKhachHang;
     String maLoai;
 
-    public String getMaThe() {
+    public int getMaThe() {
         return maThe;
     }
 
-    public void setMaThe(String maThe) {
+    public void setMaThe(int maThe) {
         this.maThe = maThe;
     }
 
@@ -60,7 +60,7 @@ public class The {
     public The() {
     }
 
-    public The(String maThe, Date thoiHan, int maXe, String maKhachHang, String maLoai) {
+    public The(int maThe, Date thoiHan, int maXe, String maKhachHang, String maLoai) {
         this.maThe = maThe;
         this.thoiHan = thoiHan;
         this.maXe = maXe;

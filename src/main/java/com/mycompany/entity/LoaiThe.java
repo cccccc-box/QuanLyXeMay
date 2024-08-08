@@ -57,6 +57,12 @@ public class LoaiThe {
         this.giaTien = giaTien;
         this.ngayApDung = ngayApDung;
     }
+
+    @Override
+    public String toString() {
+        return this.tenLoai;
+    }
+    
     
     
 }

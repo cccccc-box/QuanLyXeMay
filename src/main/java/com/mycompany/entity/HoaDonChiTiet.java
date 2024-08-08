@@ -10,9 +10,8 @@ package com.mycompany.entity;
  */
 public class HoaDonChiTiet {
     Double giaBan;
-    int soLuongBan;
-    String maThe;
-    String maHD;
+    int maThe;
+    int maHD;
 
     public Double getGiaBan() {
         return giaBan;
@@ -22,39 +21,32 @@ public class HoaDonChiTiet {
         this.giaBan = giaBan;
     }
 
-    public int getSoLuongBan() {
-        return soLuongBan;
-    }
-
-    public void setSoLuongBan(int soLuongBan) {
-        this.soLuongBan = soLuongBan;
-    }
-
-    public String getMaThe() {
+    public int getMaThe() {
         return maThe;
     }
 
-    public void setMaThe(String maThe) {
+    public void setMaThe(int maThe) {
         this.maThe = maThe;
     }
 
-    public String getMaHD() {
+    public int getMaHD() {
         return maHD;
     }
 
-    public void setMaHD(String maHD) {
+    public void setMaHD(int maHD) {
         this.maHD = maHD;
     }
 
     public HoaDonChiTiet() {
     }
 
-    public HoaDonChiTiet(Double giaBan, int soLuongBan, String maThe, String maHD) {
+    public HoaDonChiTiet(Double giaBan, int maThe, int maHD) {
         this.giaBan = giaBan;
-        this.soLuongBan = soLuongBan;
         this.maThe = maThe;
         this.maHD = maHD;
     }
+
+
     
     
 }

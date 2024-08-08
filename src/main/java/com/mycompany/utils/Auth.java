@@ -4,6 +4,8 @@
  */
 package com.mycompany.utils;
 
+import com.mycompany.dao.KhachHangDAO;
+import com.mycompany.entity.KhachHang;
 import com.mycompany.entity.TaiKhoan;
 
 /**
@@ -33,6 +35,12 @@ public class Auth {
             quyen="khachHang";
         }
         return quyen;
+    }
+    public static KhachHang layMaKhachHang(){
+        String maTK=user.getMaTaiKhoan();
+        KhachHangDAO dao = new KhachHangDAO();
+        KhachHang kh=dao.slectByMaTK(maTK);
+        return kh;
     }
 
 }

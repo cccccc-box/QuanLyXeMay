@@ -434,7 +434,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         txtHoTen.setText(kh.getHoTen());
         txtSDT.setText(kh.getSDT());
         txtCCCD.setText(kh.getCCCD());
-        txtSoDuTK.setText(kh.getSoDu());
+        txtSoDuTK.setText(kh.getSoDu().toString());
         if (kh.getHinhAnh() != null) {
             lblAnhThe.setToolTipText(kh.getHinhAnh());
             lblAnhThe.setIcon(Image.read(kh.getHinhAnh()));
@@ -450,7 +450,7 @@ public class QuanLyKhachHangJDialog extends javax.swing.JDialog {
         kh.setHoTen(txtHoTen.getText());
         kh.setSDT(txtSDT.getText());
         kh.setCCCD(txtCCCD.getText());
-        kh.setSoDu(txtSoDuTK.getText());
+        kh.setSoDu(Double.parseDouble(txtSoDuTK.getText()));
         kh.setHinhAnh(lblAnhThe.getToolTipText());
         kh.setMaTaiKhoan(cboMaTK.getSelectedItem().toString());
         return kh;
